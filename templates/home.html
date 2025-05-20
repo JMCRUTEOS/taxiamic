@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PMR Ruteos - Inicio</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Bienvenido, {{ request.session['user'] }}</h1>
+
+    <h3>Sube un archivo Excel (.xlsx):</h3>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xlsx" required>
+        <button type="submit">Subir</button>
+    </form>
+
+    {% if filename %}
+        <p><strong>Archivo subido:</strong> {{ filename }}</p>
+    {% endif %}
+
+    {% if table %}
+        <h3>Contenido del archivo:</h3>
+        {{ table | safe }}
+    {% endif %}
+</body>
+</html>
